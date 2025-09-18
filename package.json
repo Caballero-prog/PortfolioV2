@@ -5,8 +5,8 @@
   "homepage": "https://Caballero-prog.github.io/Portfolio",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --root frontend",
-    "preview": "vite preview --root frontend",
+    "build": "vite build",
+    "preview": "vite preview",
     "predeploy": "pnpm run build",
     "deploy": "gh-pages -d dist"
   },
