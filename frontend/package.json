@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --root frontend",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --root frontend"
   },
   "dependencies": {
     "gsap": "^3.13.0",
