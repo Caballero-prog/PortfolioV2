@@ -39,7 +39,7 @@ const HeroSection = () => {
       </p>
       <section className="main-container">
         <div className="left-image-container">
-          <img ref={leftImgRef} src="/images/software.svg" alt="Software" />
+          <img ref={leftImgRef} src="images/software.svg" alt="Software" />
         </div>
         <header className="hero-container">
           <h2 className="greeting">Hi,</h2>
@@ -53,7 +53,7 @@ const HeroSection = () => {
           </h2>
         </header>
         <div className="right-image-container">
-          <img ref={rightImgRef} src="/images/coder.svg" alt="Coder" />
+          <img ref={rightImgRef} src="images/coder.svg" alt="Coder" />
         </div>
       </section>
 
