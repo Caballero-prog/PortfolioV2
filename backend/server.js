@@ -62,20 +62,33 @@ fastify.get("/weather", async (request, reply) => {
       return reply.status(404).send({ error: "City not found" });
 
     let cityInfo =
-      candidates.find((c) => c.name.toLowerCase() === input) || // exact match
+      // 1. Exact match on name
+      candidates.find((c) => c.name.toLowerCase() === input) ||
+      // 2. Exact match on local names
       candidates.find(
         (c) =>
           c.local_names &&
           Object.values(c.local_names).some((n) => n.toLowerCase() === input)
-      ) || // exact local name
-      candidates.find((c) => c.name.toLowerCase().includes(input)) || // contains match
+      ) ||
+      // 3. Partial match on name (exclude 'island'/'airport')
+      candidates.find(
+        (c) =>
+          c.name.toLowerCase().includes(input) &&
+          !c.name.toLowerCase().includes("island") &&
+          !c.name.toLowerCase().includes("airport")
+      ) ||
+      // 4. Partial match on local names
       candidates.find(
         (c) =>
           c.local_names &&
-          Object.values(c.local_names).some((n) =>
-            n.toLowerCase().includes(input)
+          Object.values(c.local_names).some(
+            (n) =>
+              n.toLowerCase().includes(input) &&
+              !n.toLowerCase().includes("island") &&
+              !n.toLowerCase().includes("airport")
           )
-      ) || // contains local name
+      ) ||
+      // 5. Fallback
       candidates[0];
 
     const { latitude, longitude, name } = cityInfo;
