@@ -9,7 +9,10 @@ function WeatherCard() {
   if (!city.trim()) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/weather?city=${encodeURIComponent(city)}`);
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const res = await fetch(`${BACKEND_URL}/weather?city=${encodeURIComponent(city)}`);
+
+
     const data = await res.json();
 
     if (!data || data.error || !data.city || !data.weathercode || !data.temperature) {
