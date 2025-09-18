@@ -56,24 +56,26 @@ fastify.get("/weather", async (request, reply) => {
     if (!geoData.results || geoData.results.length === 0)
       return reply.status(404).send({ error: "City not found" });
 
-    // Filter out unwanted names
-    const candidates = geoData.results.filter(
-      (c) => c.name && c.name.toLowerCase() !== "airport"
-    );
+    const candidates = geoData.results.filter((c) => c.name);
 
     if (!candidates.length)
       return reply.status(404).send({ error: "City not found" });
 
-    // Prefer exact match on name or local names
     let cityInfo =
-      candidates.find((c) => c.name.toLowerCase().includes(input)) ||
+      candidates.find((c) => c.name.toLowerCase() === input) || // exact match
+      candidates.find(
+        (c) =>
+          c.local_names &&
+          Object.values(c.local_names).some((n) => n.toLowerCase() === input)
+      ) || // exact local name
+      candidates.find((c) => c.name.toLowerCase().includes(input)) || // contains match
       candidates.find(
         (c) =>
           c.local_names &&
           Object.values(c.local_names).some((n) =>
             n.toLowerCase().includes(input)
           )
-      ) ||
+      ) || // contains local name
       candidates[0];
 
     const { latitude, longitude, name } = cityInfo;
