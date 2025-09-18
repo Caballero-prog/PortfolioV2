@@ -58,23 +58,23 @@ fastify.get("/weather", async (request, reply) => {
 
     // Filter out unwanted names
     const candidates = geoData.results.filter(
-      (c) =>
-        c.name &&
-        !c.name.toLowerCase().includes("saari") &&
-        !c.name.toLowerCase().includes("island") &&
-        !c.name.toLowerCase().includes("airport")
+      (c) => c.name && c.name.toLowerCase() !== "airport"
     );
 
-    if (!candidates.length) return reply.status(404).send({ error: "City not found" });
+    if (!candidates.length)
+      return reply.status(404).send({ error: "City not found" });
 
     // Prefer exact match on name or local names
     let cityInfo =
-      candidates.find((c) => c.name.toLowerCase() === input) ||
-      candidates.find((c) =>
-        c.local_names &&
-        Object.values(c.local_names).some((n) => n.toLowerCase() === input)
+      candidates.find((c) => c.name.toLowerCase().includes(input)) ||
+      candidates.find(
+        (c) =>
+          c.local_names &&
+          Object.values(c.local_names).some((n) =>
+            n.toLowerCase().includes(input)
+          )
       ) ||
-      candidates[0]; // fallback to first valid candidate
+      candidates[0];
 
     const { latitude, longitude, name } = cityInfo;
     const weatherRes = await fetch(
@@ -102,4 +102,3 @@ fastify.listen({ port, host: "0.0.0.0" }, (err, address) => {
   if (err) throw err;
   console.log(`Server listening at ${address}`);
 });
-
