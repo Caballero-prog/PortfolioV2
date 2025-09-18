@@ -97,7 +97,8 @@ fastify.get("/weather", async (request, reply) => {
   }
 });
 
-fastify.listen({ port: 3000 }, (err, address) => {
+const port = process.env.PORT || 3000;
+fastify.listen({ port }, (err, address) => {
   if (err) throw err;
   console.log(`Server listening at ${address}`);
 });
