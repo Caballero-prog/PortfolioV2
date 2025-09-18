@@ -39,7 +39,7 @@ const HeroSection = () => {
       </p>
       <section className="main-container">
         <div className="left-image-container">
-          <img ref={leftImgRef} src="images/software.svg" alt="Software" />
+          <img ref={leftImgRef} src="/PortfolioV2/images/software.svg" alt="Software" />
         </div>
         <header className="hero-container">
           <h2 className="greeting">Hi,</h2>
