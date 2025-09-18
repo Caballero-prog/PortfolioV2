@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://Caballero-prog.github.io/Portfolio",
+  "homepage": "https://Caballero-prog.github.io/PortfolioV2",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
