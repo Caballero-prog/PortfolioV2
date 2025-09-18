@@ -12,14 +12,11 @@ function WeatherCard() {
     const res = await fetch(`http://localhost:3000/weather?city=${encodeURIComponent(city)}`);
     const data = await res.json();
 
-
     if (!data || data.error || !data.city || !data.weathercode || !data.temperature) {
       console.warn("Invalid weather data:", data);
-      setWeather(null); // show placeholders
+      setWeather(null);
       return;
     }
-
-
     setWeather(data);
   } catch (err) {
     console.error("Failed to fetch weather:", err);
@@ -27,8 +24,6 @@ function WeatherCard() {
   }
 };
 
-
-  // Map weather codes to descriptions
   const weatherDescription = (code) => {
     const map = {
       0: "Clear sky",
@@ -60,8 +55,8 @@ function WeatherCard() {
   const temperature =
     weather?.temperature != null ? `${weather.temperature}°C` : "—°C";
   const weatherIcon = weather
-    ? `/images/weather-icons/${weather.weathercode}.png`
-    : `/images/weather-icons/reporter.png`;
+    ? `/PortfolioV2/images/weather-icons/${weather.weathercode}.png`
+    : `/PortfolioV2/images/weather-icons/reporter.png`;
   const humidity = weather?.humidity ?? "—";
   const wind = weather?.windspeed ?? "—";
 
@@ -102,7 +97,7 @@ function WeatherCard() {
           }
           className="hidden"
           onError={(e) => {
-            e.target.src = "/images/weather-icons/reporter.png"; // fallback
+            e.target.src = "/PortfolioV2/images/weather-icons/reporter.png"; // fallback
           }}
         />
       </section>
@@ -112,11 +107,11 @@ function WeatherCard() {
 
       <section className="speed-humidity">
         <div className="humidity">
-          <img src="/images/weather-icons/humidity.png" alt="Humidity" />
+          <img src="/PortfolioV2/images/weather-icons/humidity.png" alt="Humidity" />
           {humidity}%
         </div>
         <div className="speed">
-          <img src="/images/weather-icons/wind.png" alt="Wind speed" />
+          <img src="/PortfolioV2/images/weather-icons/wind.png" alt="Wind speed" />
           {wind} km/h
         </div>
       </section>

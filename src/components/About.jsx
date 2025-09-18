@@ -24,7 +24,7 @@ export default function About() {
   return (
     <article className="about-container">
       <div className="school-image">
-        <img ref={collegeImgRef} src="/images/college.svg" alt="College" />
+        <img ref={collegeImgRef} src="/PortfolioV2/images/college.svg" alt="College" />
       </div>
       <section className="about-wrapper">
         <h2 className="about-title">

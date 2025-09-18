@@ -36,7 +36,7 @@ export default function Skills() {
           </p>
         </section>
         <div className="skills-image">
-          <img ref={skillsImgRef} src="/images/skills.svg" alt="Skills" />
+          <img ref={skillsImgRef} src="/PortfolioV2/images/skills.svg" alt="Skills" />
         </div>
       </article>
 

@@ -27,7 +27,7 @@ export default function Contact() {
         Let's connect<b className="dot">.</b>
       </h2>
       <div className="contact-image">
-        <img ref={contactImgRef} src="/images/connect.svg" alt="Connect" />
+        <img ref={contactImgRef} src="/PortfolioV2/images/connect.svg" alt="Connect" />
       </div>
       <p className="contact-description">
         Feel free to reach out for <b>collaborations</b>, <b>inquiries</b>, or potential <b>job opportunities</b>. I'm always open to connecting with <b>recruiters</b> and <b>professionals</b> for exciting <b>projects</b> or career advancements.
